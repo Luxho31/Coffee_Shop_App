@@ -6,25 +6,57 @@ import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import OrderHistoryScreen from "../screens/OrderHistoryScreen";
-import { BlurView } from "@react-native-community/blur";
+import { BlurView } from "expo-blur";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
     return (
         <Tab.Navigator
-            screenOptions={{
+            screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
                 headerShown: false,
-                // tabBarActiveTintColor: "tomato",
-                // tabBarInactiveTintColor: "gray",
+                tabBarActiveTintColor: "tomato",
+                tabBarInactiveTintColor: "gray",
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBarStyle,
                 // tabBarBackground: () => (
-                //     // <View style={styles.tabBarBackground}></View>
-                //     <BlurView overlayColor="" blurAmount={15} style={styles.BlurViewStyles} />
+                //     <BlurView
+                //         tint="light"
+                //         intensity={50}
+                //         style={StyleSheet.absoluteFill}
+                //     />
                 // ),
-            }}
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName: keyof typeof Ionicons.glyphMap;
+
+                    switch (route.name) {
+                        case "Home":
+                            iconName = focused ? "home" : "home-outline";
+                            break;
+                        case "Cart":
+                            iconName = focused ? "cart" : "cart-outline";
+                            break;
+                        case "Favorite":
+                            iconName = focused ? "heart" : "heart-outline";
+                            break;
+                        case "History":
+                            iconName = focused ? "time" : "time-outline";
+                            break;
+                        case "Profile":
+                            iconName = focused ? "person" : "person-outline";
+                            break;
+                        default:
+                            iconName = "alert";
+                    }
+
+                    // You can return any component that you like here!
+                    return (
+                        <Ionicons name={iconName} size={size} color={color} />
+                    );
+                },
+            })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Cart" component={CartScreen} />
@@ -39,19 +71,19 @@ export default TabNavigator;
 
 const styles = StyleSheet.create({
     tabBarStyle: {
-        backgroundColor: "transparent",
+        height: 80,
         position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
+        // backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(255, 255, 255, 0.1)",
         borderTopWidth: 0,
         elevation: 0,
+        borderTopColor: "transparent",
     },
-    BlurViewStyles: {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 80,
-    },
+    // BlurViewStyles: {
+    //     position: "absolute",
+    //     bottom: 0,
+    //     left: 0,
+    //     right: 0,
+    //     height: 80,
+    // },
 });
