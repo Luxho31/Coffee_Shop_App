@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { COLORS, SPACING } from "../theme/theme";
 
 interface GradientBgIconProps {
     name: keyof typeof Ionicons.glyphMap;
@@ -20,8 +21,8 @@ const GradientBgIcon: React.FC<GradientBgIconProps> = ({
             <LinearGradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
-            colors={["#aaa", "#333"]}
-            style={styles.LinearGradient}
+            colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
+            style={styles.LinearGradientBG}
             >
                 <Ionicons name={name} size={size} color={color} />
             </LinearGradient>
@@ -34,16 +35,17 @@ export default GradientBgIcon;
 const styles = StyleSheet.create({
     Container: {
         borderWidth: 2,
-        borderColor: "#333",
-        borderRadius: 10,
+        // borderColor: "#333",
+        borderColor: COLORS.secondaryDarkGreyHex,
+        borderRadius: SPACING.space_12,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#333",
+        backgroundColor: COLORS.secondaryDarkGreyHex,
         overflow: "hidden",
     },
-    LinearGradient: {
-        height: 36,
-        width: 36,
+    LinearGradientBG: {
+        height: SPACING.space_36,
+        width: SPACING.space_36,
         alignItems: "center",
         justifyContent: "center",
     }

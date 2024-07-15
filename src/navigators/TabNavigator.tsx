@@ -8,6 +8,7 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import OrderHistoryScreen from "../screens/OrderHistoryScreen";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,13 +22,13 @@ const TabNavigator = () => {
                 tabBarInactiveTintColor: "gray",
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBarStyle,
-                // tabBarBackground: () => (
-                //     <BlurView
-                //         tint="light"
-                //         intensity={50}
-                //         style={StyleSheet.absoluteFill}
-                //     />
-                // ),
+                tabBarBackground: () => (
+                    <BlurView
+                        tint="light"
+                        intensity={50}
+                        style={StyleSheet.absoluteFill}
+                    />
+                ),
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName: keyof typeof Ionicons.glyphMap;
 
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
         height: 80,
         position: "absolute",
         // backgroundColor: "rgba(255, 255, 255, 0.8)",
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
+        // backgroundColor: "rgba(255, 255, 255, 0.1)",
+        backgroundColor: COLORS.primaryBlackRGBA,
         borderTopWidth: 0,
         elevation: 0,
         borderTopColor: "transparent",

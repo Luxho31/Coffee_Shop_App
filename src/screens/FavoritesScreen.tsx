@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { BlurView } from '@react-native-community/blur';
+import { COLORS } from '../theme/theme';
 
 const FavoritesScreen = () => {
   return (
@@ -42,7 +42,8 @@ export default FavoritesScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1c1c1c',
+    // backgroundColor: '#1c1c1c',
+    backgroundColor: COLORS.primaryBlackHex,
     padding: 10,
   },
   card: {
